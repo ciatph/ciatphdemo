@@ -7,7 +7,6 @@ import Information from '@/components/Information'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
