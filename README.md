@@ -9,10 +9,13 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run dev:client
 
 # build for production with minification
 npm run build
+
+# deploy dist build to firebase (firebase hosting must have been first set-up)
+firebase deploy
 
 # build for production and view the bundle analyzer report
 npm run build --report
