@@ -289,6 +289,7 @@ body{
     border: none;
     padding: 0 0 15px 0;
     border-radius: 0;
+    margin-top: 120px;
     transition: box-shadow 0.5s;
 }
 
