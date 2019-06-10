@@ -701,7 +701,7 @@ ul.social-icons {
 /* this is used with the 'mediaquery.html' page to see media queries in effect. Reference this CSS file on a blank page and then resize the browser window */
 @media screen and (max-width: 1193px) {
     body {
-        background-color: blue;
+        /* background-color: blue; */
     }
 
     .jumbotron h1{
@@ -710,7 +710,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 960px) {
     body {
-        background-color: red;
+        /* background-color: red; */
     }
 
     .main-title{
@@ -740,7 +740,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 768px) {
     body {
-        background-color: orange;
+        /* background-color: orange; */
     }
 
     .col-sm-4{
@@ -771,7 +771,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 550px) {
     body {
-        background-color: yellow;
+        /* background-color: yellow; */
     }
 
     .logo-amia{
@@ -791,12 +791,12 @@ ul.social-icons {
 } 
 @media screen and (max-width: 320px) {
     body {
-        background-color: green;
+        /* background-color: green; */
     }
 } 
 @media screen and (max-width: 373px) {
     body {
-        background-color: gray;
+        /* background-color: gray; */
     }
     
     .logo-amia img{

@@ -64,6 +64,13 @@ module.exports = {
         }
       },
       {
+        test: /\.(csv|json|xls|txt)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          name: `files/[name].[ext]`
+        }
+      },
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
