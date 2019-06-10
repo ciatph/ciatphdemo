@@ -16,22 +16,34 @@
           // Menu Labels
           b-collapse(id="nav-collapse" is-nav style="margin: 8px 0px 8px 0px;")
             b-navbar-nav(class="ml-auto")
-              // Home
-              router-link(to="/home" tag="b-nav-item") Home
-              // Documents
-              b-nav-item-dropdown(text="Documents" style="float:left;")
-                b-dropdown-item(href="https://sites.google.com/site/amiaciatproject/documents/CRVA%20Philippines%204%20Page%20%28002%29.pdf?attredirects=0&d=1" target="blank") Draft CRVA Factsheet
-                b-dropdown-item(href="https://drive.google.com/drive/folders/0B9VxzJSCd9EwWXhLSzZjZ200Z1U") Final CBA Outputs of Regional Teams
-                b-dropdown-item(href="https://sites.google.com/site/amiaciatproject/documents/Draft%20Philippines.pdf?attredirects=0&d=1") Key Insights from the CRA Country Profile
-                b-dropdown-item(href="https://www.google.com/url?q=https%3A%2F%2Fcgspace.cgiar.org%2Fbitstream%2Fhandle%2F10568%2F82572%2FCRA_Profile_Philippines.pdf%3Fsequence%3D5%26isAllowed%3Dy&sa=D&sntz=1&usg=AFQjCNE8Hg69G-HVNr7yjXJpRsY2Sxyx2g") CRA Country Profile
-                router-link(to="/documents" tag="b-dropdown-item") [view all]
-              // CRVA Maps
-              router-link(to="/maps" tag="b-nav-item") CRVA Maps
-              // CBA Tool
-              b-nav-item(href="http://cbatool.ciat.cgiar.org/") CBA Tool
-              b-nav-item-dropdown(text="Links")
-                b-dropdown-item(href="https://csa.guide/csa/practices" target="blank") CRA Compendium
-                b-dropdown-item(href="http://blog.ciat.cgiar.org/mission-establish-thousands-of-resilient-agricultural-communities/") Blog
+              div(v-for="item in mainMenuData")
+                // Main Menu - Dropdown Links
+                b-nav-item-dropdown(
+                  v-if="item.link === '#'"
+                  :key="item.title"
+                  :text="item.title"
+                )
+                  div(v-for="subitem in item.children")
+                    // SubItem - External Link
+                    b-dropdown-item(
+                      v-if="subitem.external === 'true'"
+                      :key="subitem.title"
+                      :href="subitem.link"
+                    ) {{ subitem.title }}
+                    // SubItem - Internal (Router) Link
+                    router-link(
+                      v-else
+                      :key="subitem.title"
+                      :to="subitem.link"
+                      tag="b-dropdown-item"
+                    ) {{ subitem.title }}
+                // Main Menu - Normal Links
+                router-link(
+                  v-else
+                  :key="item.title"
+                  :to="item.link"
+                  tag="b-nav-item"
+                ) {{ item.title }}
 </template>
 
 <script>
@@ -49,7 +61,8 @@ export default {
       isActive: false,
       currentClass: 'affix',
       lightBorder: '#d1e0e0',
-      darkBorder: '#006622'
+      darkBorder: '#006622',
+      mainMenuData: {}
     }
   },
 
@@ -69,6 +82,13 @@ export default {
 
   created () {
     window.addEventListener('scroll', this.handleScroll)
+    this.$http.get('/static/data/links-mainmenu.json')
+      .then((result) => {
+        this.mainMenuData = result.data
+      })
+      .catch((error) => {
+        console.log('error! ' + error)
+      })
   },
 
   destroyed () {
