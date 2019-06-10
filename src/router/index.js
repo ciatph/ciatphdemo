@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import About from '@/components/About'
-import Information from '@/components/Information'
+import Home from '@/components/pages/Home'
+import Maps from '@/components/pages/Maps'
+import Documents from '@/components/pages/Documents'
 
 Vue.use(Router)
 
@@ -19,14 +19,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'About',
-      component: About
+      path: '/maps',
+      name: 'Maps',
+      component: Maps
     },
     {
-      path: '/info',
-      name: 'Information',
-      component: Information
+      path: '/documents',
+      name: 'Documents',
+      component: Documents
     }
   ]
 })
